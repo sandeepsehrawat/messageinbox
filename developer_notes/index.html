@@ -8,9 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://<your-github-username>.github.io/message-inbox-api-docs/developer_notes/">
+        <link rel="canonical" href="https://sandeepsehrawat.github.io/message-inbox-api-docs/developer_notes/">
       
       
+        <link rel="prev" href="../functional_notes/">
+      
+      
+        <link rel="next" href="../mock_responses/">
       
       
         
@@ -21,11 +25,14 @@
     
     
       
-        <title>Developer notes - Computeshare Message Inbox API</title>
+        <title>Developer Notes - Computeshare Message Inbox API</title>
       
     
     
       <link rel="stylesheet" href="../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -53,13 +60,23 @@
   </head>
   
   
-    <body dir="ltr">
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
+      
+        
+        <a href="#developer-notes" class="md-skip">
+          Skip to content
+        </a>
       
     </div>
     <div data-md-component="announce">
@@ -93,15 +110,15 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Developer notes
+              Developer Notes
             
           </span>
         </div>
       </div>
     </div>
     
+      
     
-      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
     
     
@@ -209,6 +226,178 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spc_architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SPC Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sequence_diagram/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sequence Diagram
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api_spec/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Specification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../functional_notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Functional Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Developer Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mock_responses/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mock Responses
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -226,6 +415,8 @@
   
   
   
+    
+  
   
 </nav>
                   </div>
@@ -242,9 +433,33 @@
 
 
 
-  <h1>Developer notes</h1>
-
-
+<h1 id="developer-notes">Developer Notes<a class="headerlink" href="#developer-notes" title="Permanent link">&para;</a></h1>
+<p><strong>Caching:</strong>
+- Mobile → local cache
+- Web → session storage</p>
+<p><strong>Push Notifications:</strong>
+- Process API triggers push if <code>pushNotification = true</code>
+- Respect user preferences
+- Stop after read</p>
+<p><strong>Edge Cases:</strong>
+- Offline mode
+- Partial message fetch
+- Multi-device read/unread sync</p>
+<p><strong>Testing Recommendations:</strong>
+- Validate unread count sync
+- Check transformations &amp; aggregation
+- Test error responses</p>
+<p><strong>Security:</strong>
+- JWT authentication
+- Validate <code>userId</code> against token</p>
+<p><strong>Performance:</strong>
+- Pagination for large inboxes
+- Aggregate bulk messages to reduce payload</p>
+<p><strong>Assumptions:</strong>
+- Mobile/web apps cache unread IDs
+- System APIs respond correctly
+- Push handled via existing service (Firebase/APNs)
+- Bulk messages aggregated to reduce client load</p>
 
 
 

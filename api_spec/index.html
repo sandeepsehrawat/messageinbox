@@ -8,9 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://<your-github-username>.github.io/message-inbox-api-docs/api_spec/">
+        <link rel="canonical" href="https://sandeepsehrawat.github.io/message-inbox-api-docs/api_spec/">
       
       
+        <link rel="prev" href="../sequence_diagram/">
+      
+      
+        <link rel="next" href="../functional_notes/">
       
       
         
@@ -21,11 +25,14 @@
     
     
       
-        <title>Api spec - Computeshare Message Inbox API</title>
+        <title>API Specification - Computeshare Message Inbox API</title>
       
     
     
       <link rel="stylesheet" href="../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -53,13 +60,23 @@
   </head>
   
   
-    <body dir="ltr">
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
+      
+        
+        <a href="#api-specification-openapi" class="md-skip">
+          Skip to content
+        </a>
       
     </div>
     <div data-md-component="announce">
@@ -93,15 +110,15 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Api spec
+              API Specification
             
           </span>
         </div>
       </div>
     </div>
     
+      
     
-      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
     
     
@@ -209,6 +226,178 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spc_architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SPC Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sequence_diagram/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sequence Diagram
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Specification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../functional_notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Functional Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../developer_notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Developer Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mock_responses/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mock Responses
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -226,6 +415,8 @@
   
   
   
+    
+  
   
 </nav>
                   </div>
@@ -242,9 +433,21 @@
 
 
 
-  <h1>Api spec</h1>
-
-
+<h1 id="api-specification-openapi">API Specification (OpenAPI)<a class="headerlink" href="#api-specification-openapi" title="Permanent link">&para;</a></h1>
+<p>The full OpenAPI YAML is included in the repo: <a href="../1_OpenAPI_Spec.yaml">1_OpenAPI_Spec.yaml</a></p>
+<p><strong>Endpoints:</strong>
+- <code>GET /messages/unread</code> → fetch unread messages
+- <code>GET /messages/{messageId}</code> → fetch full message content
+- <code>PATCH /messages/{messageId}</code> → mark message as read</p>
+<p><strong>Key Fields:</strong>
+- <code>messageId</code> (string, required)
+- <code>title</code> / <code>content</code> (string, required)
+- <code>type</code> (<code>system</code> | <code>bulk</code>)
+- <code>status</code> (<code>read</code> | <code>unread</code>)
+- <code>timestamp</code> (ISO 8601)
+- <code>category</code> (string)
+- <code>actions</code> (array of strings: download, acknowledge)
+- <code>pushNotification</code> (boolean)</p>
 
 
 

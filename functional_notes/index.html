@@ -8,9 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://<your-github-username>.github.io/message-inbox-api-docs/functional_notes/">
+        <link rel="canonical" href="https://sandeepsehrawat.github.io/message-inbox-api-docs/functional_notes/">
       
       
+        <link rel="prev" href="../api_spec/">
+      
+      
+        <link rel="next" href="../developer_notes/">
       
       
         
@@ -21,11 +25,14 @@
     
     
       
-        <title>Functional notes - Computeshare Message Inbox API</title>
+        <title>Functional Notes - Computeshare Message Inbox API</title>
       
     
     
       <link rel="stylesheet" href="../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -53,13 +60,23 @@
   </head>
   
   
-    <body dir="ltr">
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
+      
+        
+        <a href="#functional-notes" class="md-skip">
+          Skip to content
+        </a>
       
     </div>
     <div data-md-component="announce">
@@ -93,15 +110,15 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Functional notes
+              Functional Notes
             
           </span>
         </div>
       </div>
     </div>
     
+      
     
-      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
     
     
@@ -209,6 +226,178 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spc_architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SPC Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sequence_diagram/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sequence Diagram
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api_spec/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Specification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Functional Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../developer_notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Developer Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mock_responses/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mock Responses
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -226,6 +415,8 @@
   
   
   
+    
+  
   
 </nav>
                   </div>
@@ -242,9 +433,34 @@
 
 
 
-  <h1>Functional notes</h1>
-
-
+<h1 id="functional-notes">Functional Notes<a class="headerlink" href="#functional-notes" title="Permanent link">&para;</a></h1>
+<p><strong>Message Types:</strong> system, bulk</p>
+<p><strong>Critical Fields:</strong> <code>category</code>, <code>actions</code>, <code>pushNotification</code></p>
+<p><strong>Validation Rules:</strong>
+- <code>messageId</code> must belong to the user
+- Title &amp; content required
+- Timestamp must be valid ISO 8601</p>
+<p><strong>Transformations:</strong>
+- Bulk messages aggregated
+- Timestamps localized</p>
+<p><strong>Unread Count Handling:</strong>
+- Maintained in cache/session
+- Updated after marking messages as read
+- Multi-device sync supported</p>
+<p><strong>Push Notifications:</strong>
+- Triggered for high-priority messages
+- Respect user preferences
+- Stop notifications after message is read</p>
+<p><strong>Pagination &amp; Filtering:</strong>
+- <code>page</code> &amp; <code>pageSize</code> supported</p>
+<p><strong>Error Handling:</strong>
+- 401 Unauthorized
+- 404 Message Not Found
+- 500 Internal Server Error</p>
+<p><strong>Edge Cases:</strong>
+- Offline mode
+- Partial message fetch if System API fails
+- Duplicate prevention</p>
 
 
 
