@@ -1,0 +1,34 @@
+site_name: Computeshare Message Inbox API
+site_url: https://sandeepsehrawat.github.io/message-inbox-api-docs/
+theme:
+  name: material
+  palette:
+    primary: 'indigo'
+    accent: 'indigo'
+  font:
+    text: 'Roboto'
+    code: 'Roboto Mono'
+
+nav:
+  - Home: index.md
+  - SPC Architecture: spc_architecture.md
+  - Sequence Diagram: sequence_diagram.md
+  - API Specification: api_spec.md
+  - Functional Notes: functional_notes.md
+  - Developer Notes: developer_notes.md
+  - Mock Responses: mock_responses.md
+
+
+
+plugins:
+  - search             # default search plugin
+
+markdown_extensions:
+  - admonition
+  - codehilite
+  - toc:
+      permalink: true
+  - pymdownx.superfences
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.keys
