@@ -376,6 +376,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Specification
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -392,6 +410,47 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#openapi-30-specification-yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenAPI 3.0 Specification (YAML)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#commentary-for-developers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Commentary for Developers
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -498,6 +557,36 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#openapi-30-specification-yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenAPI 3.0 Specification (YAML)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#commentary-for-developers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Commentary for Developers
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -517,20 +606,309 @@
 
 
 <h1 id="api-specification-openapi">API Specification (OpenAPI)<a class="headerlink" href="#api-specification-openapi" title="Permanent link">&para;</a></h1>
-<p>The full OpenAPI YAML is included in the repo: <a href="../1_OpenAPI_Spec.yaml">1_OpenAPI_Spec.yaml</a></p>
-<p><strong>Endpoints:</strong>
-- <code>GET /messages/unread</code> → fetch unread messages
-- <code>GET /messages/{messageId}</code> → fetch full message content
-- <code>PATCH /messages/{messageId}</code> → mark message as read</p>
-<p><strong>Key Fields:</strong>
-- <code>messageId</code> (string, required)
-- <code>title</code> / <code>content</code> (string, required)
-- <code>type</code> (<code>system</code> | <code>bulk</code>)
-- <code>status</code> (<code>read</code> | <code>unread</code>)
-- <code>timestamp</code> (ISO 8601)
-- <code>category</code> (string)
-- <code>actions</code> (array of strings: download, acknowledge)
-- <code>pushNotification</code> (boolean)</p>
+<p>The full OpenAPI YAML is included in the repo: <a href="../images/Openapi_Spec_InvestorInboxProcessAPI.yaml">Openapi_Spec_InvestorInboxProcessAPI.yaml</a></p>
+<h2 id="openapi-30-specification-yaml">OpenAPI 3.0 Specification (YAML)<a class="headerlink" href="#openapi-30-specification-yaml" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="nt">openapi</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.0.3</span>
+<span class="nt">info</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InvestorInboxProcessAPI</span>
+<span class="w">  </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0.0</span>
+<span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">&gt;</span>
+<span class="w">    </span><span class="no">Internal process-layer API responsible for orchestration, validation,</span>
+<span class="w">    </span><span class="no">transformation and unread-count computation for the investor message inbox.</span>
+
+<span class="nt">servers</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://internal.api.local/inbox-process</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Internal-only endpoint (not exposed to internet)</span>
+
+<span class="nt">paths</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">/unread-messages</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">post</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">summary</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Fetch unread messages for a user (system + bulk)</span>
+<span class="w">      </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">&gt;</span>
+<span class="w">        </span><span class="no">Aggregates unread messages (system and bulk) for a given user, applies</span>
+<span class="w">        </span><span class="no">validation and transformation, and returns a unified DTO including totalUnread.</span>
+<span class="w">        </span><span class="no">This endpoint is intended to be called by InvestorInboxChannelAPI.</span>
+<span class="w">      </span><span class="nt">requestBody</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">        </span><span class="nt">content</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">application/json</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">schema</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">object</span>
+<span class="w">              </span><span class="nt">required</span><span class="p">:</span>
+<span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">userId</span>
+<span class="w">              </span><span class="nt">properties</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">userId</span><span class="p">:</span>
+<span class="w">                  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">                  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Unique</span><span class="nv"> </span><span class="s">identifier</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">investor</span><span class="nv"> </span><span class="s">user&quot;</span>
+<span class="w">                </span><span class="nt">includeRead</span><span class="p">:</span>
+<span class="w">                  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">boolean</span>
+<span class="w">                  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;If</span><span class="nv"> </span><span class="s">true,</span><span class="nv"> </span><span class="s">include</span><span class="nv"> </span><span class="s">read</span><span class="nv"> </span><span class="s">messages</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">well&quot;</span>
+<span class="w">                  </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">      </span><span class="nt">responses</span><span class="p">:</span>
+<span class="w">        </span><span class="s">&quot;200&quot;</span><span class="p p-Indicator">:</span>
+<span class="w">          </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Unread messages aggregated for the user</span>
+<span class="w">          </span><span class="nt">content</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">application/json</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">schema</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">$ref</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;#/components/schemas/UnreadMessagesResult&quot;</span>
+<span class="w">        </span><span class="s">&quot;400&quot;</span><span class="p p-Indicator">:</span>
+<span class="w">          </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Invalid request (e.g. missing userId)</span>
+<span class="w">        </span><span class="s">&quot;401&quot;</span><span class="p p-Indicator">:</span>
+<span class="w">          </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Caller is not authorised to invoke this process API</span>
+<span class="w">        </span><span class="s">&quot;500&quot;</span><span class="p p-Indicator">:</span>
+<span class="w">          </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Downstream failure (system API / bulk API / unexpected error)</span>
+
+<span class="w">  </span><span class="nt">/message-detail</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">post</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">summary</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Fetch detailed content for a single message</span>
+<span class="w">      </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">&gt;</span>
+<span class="w">        </span><span class="no">Retrieves and validates the full details of a specific message,</span>
+<span class="w">        </span><span class="no">ensuring it belongs to the requester and mapping raw fields to MessageDetailDTO.</span>
+<span class="w">      </span><span class="nt">requestBody</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">        </span><span class="nt">content</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">application/json</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">schema</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">object</span>
+<span class="w">              </span><span class="nt">required</span><span class="p">:</span>
+<span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">userId</span>
+<span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">messageId</span>
+<span class="w">              </span><span class="nt">properties</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">userId</span><span class="p">:</span>
+<span class="w">                  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">                </span><span class="nt">messageId</span><span class="p">:</span>
+<span class="w">                  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">      </span><span class="nt">responses</span><span class="p">:</span>
+<span class="w">        </span><span class="s">&quot;200&quot;</span><span class="p p-Indicator">:</span>
+<span class="w">          </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Full message detail</span>
+<span class="w">          </span><span class="nt">content</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">application/json</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">schema</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">$ref</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;#/components/schemas/MessageDetailDTO&quot;</span>
+<span class="w">        </span><span class="s">&quot;400&quot;</span><span class="p p-Indicator">:</span>
+<span class="w">          </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Invalid input</span>
+<span class="w">        </span><span class="s">&quot;401&quot;</span><span class="p p-Indicator">:</span>
+<span class="w">          </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Caller is not authorised</span>
+<span class="w">        </span><span class="s">&quot;404&quot;</span><span class="p p-Indicator">:</span>
+<span class="w">          </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Message not found or not owned by user</span>
+<span class="w">        </span><span class="s">&quot;500&quot;</span><span class="p p-Indicator">:</span>
+<span class="w">          </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Downstream failure</span>
+
+<span class="w">  </span><span class="nt">/mark-message-read</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">post</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">summary</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Mark a message as read and optionally return updated unread count</span>
+<span class="w">      </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">&gt;</span>
+<span class="w">        </span><span class="no">Marks the specified message as read for the given user, persists the change</span>
+<span class="w">        </span><span class="no">via MessageSystemAPI, and can optionally recalculate and return the new unread count.</span>
+<span class="w">      </span><span class="nt">requestBody</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">        </span><span class="nt">content</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">application/json</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">schema</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">object</span>
+<span class="w">              </span><span class="nt">required</span><span class="p">:</span>
+<span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">userId</span>
+<span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">messageId</span>
+<span class="w">              </span><span class="nt">properties</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">userId</span><span class="p">:</span>
+<span class="w">                  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">                </span><span class="nt">messageId</span><span class="p">:</span>
+<span class="w">                  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">                </span><span class="nt">returnUnreadCount</span><span class="p">:</span>
+<span class="w">                  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">boolean</span>
+<span class="w">                  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;If</span><span class="nv"> </span><span class="s">true,</span><span class="nv"> </span><span class="s">return</span><span class="nv"> </span><span class="s">updated</span><span class="nv"> </span><span class="s">unreadCount&quot;</span>
+<span class="w">                  </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">      </span><span class="nt">responses</span><span class="p">:</span>
+<span class="w">        </span><span class="s">&quot;200&quot;</span><span class="p p-Indicator">:</span>
+<span class="w">          </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Message marked as read and unread count returned (if requested)</span>
+<span class="w">          </span><span class="nt">content</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">application/json</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">schema</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">object</span>
+<span class="w">                </span><span class="nt">properties</span><span class="p">:</span>
+<span class="w">                  </span><span class="nt">success</span><span class="p">:</span>
+<span class="w">                    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">boolean</span>
+<span class="w">                    </span><span class="nt">example</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">                  </span><span class="nt">unreadCount</span><span class="p">:</span>
+<span class="w">                    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">integer</span>
+<span class="w">                    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Updated</span><span class="nv"> </span><span class="s">unread</span><span class="nv"> </span><span class="s">count</span><span class="nv"> </span><span class="s">after</span><span class="nv"> </span><span class="s">marking</span><span class="nv"> </span><span class="s">read&quot;</span>
+<span class="w">          </span><span class="nt">x-notes</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">&gt;</span>
+<span class="w">            </span><span class="no">If the caller does not require unreadCount, they may ignore the response</span>
+<span class="w">            </span><span class="no">body and treat HTTP 200 as success only.</span>
+<span class="w">        </span><span class="s">&quot;204&quot;</span><span class="p p-Indicator">:</span>
+<span class="w">          </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Message marked as read with no response body</span>
+<span class="w">        </span><span class="s">&quot;400&quot;</span><span class="p p-Indicator">:</span>
+<span class="w">          </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Invalid request (e.g. missing userId/messageId)</span>
+<span class="w">        </span><span class="s">&quot;401&quot;</span><span class="p p-Indicator">:</span>
+<span class="w">          </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Caller is not authorised</span>
+<span class="w">        </span><span class="s">&quot;404&quot;</span><span class="p p-Indicator">:</span>
+<span class="w">          </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Message not found or not owned by user</span>
+<span class="w">        </span><span class="s">&quot;500&quot;</span><span class="p p-Indicator">:</span>
+<span class="w">          </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Downstream failure</span>
+
+<span class="nt">components</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">schemas</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">UnreadMessagesResult</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">object</span>
+<span class="w">      </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Aggregated</span><span class="nv"> </span><span class="s">unread</span><span class="nv"> </span><span class="s">messages</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">user,</span><span class="nv"> </span><span class="s">including</span><span class="nv"> </span><span class="s">system</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">bulk&quot;</span>
+<span class="w">      </span><span class="nt">properties</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">userId</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">        </span><span class="nt">totalUnread</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">integer</span>
+<span class="w">        </span><span class="nt">messages</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">array</span>
+<span class="w">          </span><span class="nt">items</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">$ref</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;#/components/schemas/MessageSummaryDTO&quot;</span>
+
+<span class="w">    </span><span class="nt">MessageSummaryDTO</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">object</span>
+<span class="w">      </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Lightweight</span><span class="nv"> </span><span class="s">message</span><span class="nv"> </span><span class="s">representation</span><span class="nv"> </span><span class="s">used</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">inbox</span><span class="nv"> </span><span class="s">list&quot;</span>
+<span class="w">      </span><span class="nt">required</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">messageId</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">title</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">type</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">timestampUtc</span>
+<span class="w">      </span><span class="nt">properties</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">messageId</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">        </span><span class="nt">title</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">        </span><span class="nt">summary</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">          </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Short</span><span class="nv"> </span><span class="s">preview</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">message</span><span class="nv"> </span><span class="s">content&quot;</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">          </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Message</span><span class="nv"> </span><span class="s">type:</span><span class="nv"> </span><span class="s">system</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">bulk&quot;</span>
+<span class="w">          </span><span class="nt">enum</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">system</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">bulk</span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">          </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Read/unread</span><span class="nv"> </span><span class="s">status&quot;</span>
+<span class="w">          </span><span class="nt">enum</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">read</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">unread</span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">category</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">          </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Optional</span><span class="nv"> </span><span class="s">category</span><span class="nv"> </span><span class="s">(e.g.</span><span class="nv"> </span><span class="s">Account,</span><span class="nv"> </span><span class="s">Dividend,</span><span class="nv"> </span><span class="s">CorporateAction)&quot;</span>
+<span class="w">        </span><span class="nt">timestampUtc</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">          </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">date-time</span>
+<span class="w">          </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Message</span><span class="nv"> </span><span class="s">creation</span><span class="nv"> </span><span class="s">time</span><span class="nv"> </span><span class="s">(UTC)&quot;</span>
+<span class="w">        </span><span class="nt">localizedTimestamp</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">          </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Human-friendly</span><span class="nv"> </span><span class="s">timestamp</span><span class="nv"> </span><span class="s">formatted</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">user&#39;s</span><span class="nv"> </span><span class="s">locale</span><span class="nv"> </span><span class="s">(optional)&quot;</span>
+<span class="w">        </span><span class="nt">actions</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">array</span>
+<span class="w">          </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Available</span><span class="nv"> </span><span class="s">actions</span><span class="nv"> </span><span class="s">(e.g.</span><span class="nv"> </span><span class="s">download,</span><span class="nv"> </span><span class="s">acknowledge)&quot;</span>
+<span class="w">          </span><span class="nt">items</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">        </span><span class="nt">pushNotification</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">boolean</span>
+<span class="w">          </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Whether</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">message</span><span class="nv"> </span><span class="s">should</span><span class="nv"> </span><span class="s">trigger</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">push</span><span class="nv"> </span><span class="s">notification&quot;</span>
+
+<span class="w">    </span><span class="nt">MessageDetailDTO</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">object</span>
+<span class="w">      </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Full</span><span class="nv"> </span><span class="s">message</span><span class="nv"> </span><span class="s">details</span><span class="nv"> </span><span class="s">returned</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">single</span><span class="nv"> </span><span class="s">message&quot;</span>
+<span class="w">      </span><span class="nt">required</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">messageId</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">title</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">content</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">type</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">status</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">timestampUtc</span>
+<span class="w">      </span><span class="nt">properties</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">messageId</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">        </span><span class="nt">title</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">        </span><span class="nt">content</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">          </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Full</span><span class="nv"> </span><span class="s">message</span><span class="nv"> </span><span class="s">body</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">rendered</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">user&quot;</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">          </span><span class="nt">enum</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">system</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">bulk</span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">status</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">          </span><span class="nt">enum</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">read</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">unread</span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">category</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">        </span><span class="nt">timestampUtc</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">          </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">date-time</span>
+<span class="w">        </span><span class="nt">localizedTimestamp</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">        </span><span class="nt">actions</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">array</span>
+<span class="w">          </span><span class="nt">items</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">        </span><span class="nt">pushNotification</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">boolean</span>
+<span class="w">        </span><span class="nt">metadata</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">object</span>
+<span class="w">          </span><span class="nt">additionalProperties</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">          </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Optional</span><span class="nv"> </span><span class="s">metadata</span><span class="nv"> </span><span class="s">key-value</span><span class="nv"> </span><span class="s">pairs</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">upstream</span><span class="nv"> </span><span class="s">systems&quot;</span>
+
+<span class="nt">security</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">internalServiceAuth</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
+
+<span class="nt">components</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">securitySchemes</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">internalServiceAuth</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http</span>
+<span class="w">      </span><span class="nt">scheme</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bearer</span>
+<span class="w">      </span><span class="nt">bearerFormat</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">JWT</span>
+<span class="w">      </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Internal</span><span class="nv"> </span><span class="s">service-to-service</span><span class="nv"> </span><span class="s">authentication</span><span class="nv"> </span><span class="s">token&quot;</span>
+</code></pre></div>
+<hr />
+<h2 id="commentary-for-developers">Commentary for Developers<a class="headerlink" href="#commentary-for-developers" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>Why POST for process endpoints?</strong><br />
+  These are <strong>internal orchestration operations</strong> that may evolve over time and accept complex filter/payload objects.<br />
+  Using <code>POST</code> avoids overloading query strings and makes it easier to extend the request structure without breaking URLs.</p>
+</li>
+<li>
+<p><strong>Relationship to Channel API:</strong>  </p>
+</li>
+<li><code>InvestorInboxChannelAPI</code> exposes:<ul>
+<li><code>GET /messages/unread</code></li>
+<li><code>GET /messages/{messageId}</code></li>
+<li><code>PATCH /messages/{messageId}/read</code></li>
+</ul>
+</li>
+<li>Internally, it calls <strong>InvestorInboxProcessAPI</strong> using the contracts defined above:<ul>
+<li><code>/unread-messages</code></li>
+<li><code>/message-detail</code></li>
+<li><code>/mark-message-read</code></li>
+</ul>
+</li>
+<li>
+<p>The Channel API mostly does <strong>HTTP concerns</strong> (auth, headers, rate limiting, mapping DTOs), while the Process API owns <strong>business logic &amp; orchestration</strong>.</p>
+</li>
+<li>
+<p><strong>Where integration happens:</strong><br />
+  All calls to <code>MessageSystemAPI</code>, <code>UserPreferenceSystemAPI</code>, and <code>BulkMessageSystemAPI</code> are <strong>inside InvestorInboxProcessAPI</strong>, not exposed here.<br />
+  This ensures:</p>
+</li>
+<li>Single place for validation, error handling and retries.</li>
+<li>
+<p>Clear separation between domain logic and system-specific contracts.</p>
+</li>
+<li>
+<p><strong>How to implement:</strong>  </p>
+</li>
+<li>Use this OpenAPI spec to generate stubs or controllers for <code>InvestorInboxProcessAPI</code>.</li>
+<li>Implement the orchestration logic described in the <strong>Sequence Diagrams</strong> and <strong>Functional Notes</strong> documents.</li>
+<li>Ensure that <code>UnreadMessagesResult</code>, <code>MessageSummaryDTO</code>, and <code>MessageDetailDTO</code> align with:<ul>
+<li>Inbox list UI requirements.</li>
+<li>Detail view UI requirements.</li>
+<li>Push notification decisions.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Together with the <strong>Assumptions</strong>, <strong>SPC Architecture Overview</strong>, and <strong>Sequence Diagrams</strong>, this file completes the <strong>Low-Level Design (LLD) specification for the InvestorInboxProcessAPI</strong>.</p>
+</blockquote>
 
 
 

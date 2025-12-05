@@ -778,6 +778,56 @@ It uses <strong>concrete component names</strong> so developers can map them dir
 </li>
 </ol>
 <hr />
+<h1 id="5-sequence-push-notification-dispatch-user-inbox-fetch">5️⃣ Sequence: Push Notification Dispatch → User Inbox Fetch<a class="headerlink" href="#5-sequence-push-notification-dispatch-user-inbox-fetch" title="Permanent link">&para;</a></h1>
+<div class="zoom-image">
+  <img src="../images/seq5.svg" />
+</div>
+
+<p><strong>Goal:</strong> When a bulk message or system message is created by back-office systems, push notifications are dispatched to affected investors. Once a user taps the notification on their device, the app pulls fresh unread messages from the inbox via the Channel API.</p>
+<p><strong>Flow (Step-by-Step):</strong></p>
+<ol>
+<li>
+<p><strong>BulkMessageCommandService OR SystemMessageCommandService</strong><br />
+   Triggers a notification dispatch: <code>notify(messageTemplate, eventType, targetCriteria)</code> (e.g., dividend applied to eligible holders)</p>
+</li>
+<li>
+<p><strong>NotificationDispatchService (internal)</strong>  </p>
+<p>Determines affected investors based on targetCriteria
+ Resolves device tokens for all impacted users
+ Prepares a short notification payload using messageTemplate</p>
+</li>
+<li>
+<p><strong>NotificationDispatchService → PushDeliveryProvider</strong><br />
+   Sends: <code>GetBulkMessagesForUser(userId)</code>   to a provider such as Firebase, APNS, or Azure Notification Hubs</p>
+</li>
+<li>
+<p><strong>InvestorInboxProcessAPI → MessageSystemAPI</strong><br />
+   Delivers push notification to each registered device
+  Device OS displays the notification to the user</p>
+</li>
+<li>
+<p><strong>Investor Device (Mobile App)</strong><br />
+    When the user taps the push notification:    App opens message inbox UI</p>
+</li>
+<li>
+<p><strong>Investor Device → InvestorInboxChannelAPI</strong><br />
+     Sends: 'GET /messages/unread?userId={userId}` to fetch fresh unread messages, ensuring the latest persisted bulk/system messages are visible</p>
+</li>
+<li>
+<p><strong>InvestorInboxChannelAPI → InvestorInboxProcessAPI</strong><br />
+   Internally executes <code>FetchUnreadMessages(userId)</code> (integration + transformation logic described in Sequence 1)</p>
+</li>
+<li>
+<p><strong>InvestorInboxProcessAPI → InvestorInboxChannelAPI → Investor Device</strong><br />
+   Responds with the refreshed inbox state: <code>200 OK + JSON (totalUnread, messages[])</code></p>
+</li>
+<li>
+<p><strong>Investor Device (Mobile App)</strong>  <br />
+    Displays messages with correct unread badges<br />
+    User is now aligned with the backend state</p>
+</li>
+</ol>
+<hr />
 <h3 id="how-developers-should-use-these-diagrams">How Developers Should Use These Diagrams<a class="headerlink" href="#how-developers-should-use-these-diagrams" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Treat <strong>InvestorInboxChannelAPI</strong>, <strong>InvestorInboxProcessAPI</strong>, <strong>MessageSystemAPI</strong>, <strong>UserPreferenceSystemAPI</strong>, and <strong>BulkMessageSystemAPI</strong> as <strong>concrete services</strong> or bounded contexts.</li>

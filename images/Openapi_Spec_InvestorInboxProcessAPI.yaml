@@ -1,0 +1,250 @@
+openapi: 3.0.3
+info:
+  title: InvestorInboxProcessAPI
+  version: 1.0.0
+  description: >
+    Internal process-layer API responsible for orchestration, validation,
+    transformation and unread-count computation for the investor message inbox.
+
+servers:
+  - url: https://internal.api.local/inbox-process
+    description: Internal-only endpoint (not exposed to internet)
+
+paths:
+  /unread-messages:
+    post:
+      summary: Fetch unread messages for a user (system + bulk)
+      description: >
+        Aggregates unread messages (system and bulk) for a given user, applies
+        validation and transformation, and returns a unified DTO including totalUnread.
+        This endpoint is intended to be called by InvestorInboxChannelAPI.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - userId
+              properties:
+                userId:
+                  type: string
+                  description: "Unique identifier of the investor user"
+                includeRead:
+                  type: boolean
+                  description: "If true, include read messages as well"
+                  default: false
+      responses:
+        "200":
+          description: Unread messages aggregated for the user
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UnreadMessagesResult"
+        "400":
+          description: Invalid request (e.g. missing userId)
+        "401":
+          description: Caller is not authorised to invoke this process API
+        "500":
+          description: Downstream failure (system API / bulk API / unexpected error)
+
+  /message-detail:
+    post:
+      summary: Fetch detailed content for a single message
+      description: >
+        Retrieves and validates the full details of a specific message,
+        ensuring it belongs to the requester and mapping raw fields to MessageDetailDTO.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - userId
+                - messageId
+              properties:
+                userId:
+                  type: string
+                messageId:
+                  type: string
+      responses:
+        "200":
+          description: Full message detail
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MessageDetailDTO"
+        "400":
+          description: Invalid input
+        "401":
+          description: Caller is not authorised
+        "404":
+          description: Message not found or not owned by user
+        "500":
+          description: Downstream failure
+
+  /mark-message-read:
+    post:
+      summary: Mark a message as read and optionally return updated unread count
+      description: >
+        Marks the specified message as read for the given user, persists the change
+        via MessageSystemAPI, and can optionally recalculate and return the new unread count.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - userId
+                - messageId
+              properties:
+                userId:
+                  type: string
+                messageId:
+                  type: string
+                returnUnreadCount:
+                  type: boolean
+                  description: "If true, return updated unreadCount"
+                  default: true
+      responses:
+        "200":
+          description: Message marked as read and unread count returned (if requested)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  unreadCount:
+                    type: integer
+                    description: "Updated unread count after marking read"
+          x-notes: >
+            If the caller does not require unreadCount, they may ignore the response
+            body and treat HTTP 200 as success only.
+        "204":
+          description: Message marked as read with no response body
+        "400":
+          description: Invalid request (e.g. missing userId/messageId)
+        "401":
+          description: Caller is not authorised
+        "404":
+          description: Message not found or not owned by user
+        "500":
+          description: Downstream failure
+
+components:
+  schemas:
+    UnreadMessagesResult:
+      type: object
+      description: "Aggregated unread messages for a user, including system and bulk"
+      properties:
+        userId:
+          type: string
+        totalUnread:
+          type: integer
+        messages:
+          type: array
+          items:
+            $ref: "#/components/schemas/MessageSummaryDTO"
+
+    MessageSummaryDTO:
+      type: object
+      description: "Lightweight message representation used in inbox list"
+      required:
+        - messageId
+        - title
+        - type
+        - status
+        - timestampUtc
+      properties:
+        messageId:
+          type: string
+        title:
+          type: string
+        summary:
+          type: string
+          description: "Short preview of the message content"
+        type:
+          type: string
+          description: "Message type: system or bulk"
+          enum: [system, bulk]
+        status:
+          type: string
+          description: "Read/unread status"
+          enum: [read, unread]
+        category:
+          type: string
+          description: "Optional category (e.g. Account, Dividend, CorporateAction)"
+        timestampUtc:
+          type: string
+          format: date-time
+          description: "Message creation time (UTC)"
+        localizedTimestamp:
+          type: string
+          description: "Human-friendly timestamp formatted for user's locale (optional)"
+        actions:
+          type: array
+          description: "Available actions (e.g. download, acknowledge)"
+          items:
+            type: string
+        pushNotification:
+          type: boolean
+          description: "Whether this message should trigger a push notification"
+
+    MessageDetailDTO:
+      type: object
+      description: "Full message details returned for a single message"
+      required:
+        - messageId
+        - title
+        - content
+        - type
+        - status
+        - timestampUtc
+      properties:
+        messageId:
+          type: string
+        title:
+          type: string
+        content:
+          type: string
+          description: "Full message body as rendered to the user"
+        type:
+          type: string
+          enum: [system, bulk]
+        status:
+          type: string
+          enum: [read, unread]
+        category:
+          type: string
+        timestampUtc:
+          type: string
+          format: date-time
+        localizedTimestamp:
+          type: string
+        actions:
+          type: array
+          items:
+            type: string
+        pushNotification:
+          type: boolean
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+          description: "Optional metadata key-value pairs from upstream systems"
+
+security:
+  - internalServiceAuth: []
+
+components:
+  securitySchemes:
+    internalServiceAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: "Internal service-to-service authentication token"
