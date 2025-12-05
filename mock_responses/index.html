@@ -23,7 +23,7 @@
     
     
       
-        <title>Mock Responses - Message Inbox API Low Level Design</title>
+        <title>Sample Requests and Responses - Message Inbox API Low Level Design</title>
       
     
     
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#unread-messages-example" class="md-skip">
+        <a href="#api-request-response-examples" class="md-skip">
           Skip to content
         </a>
       
@@ -110,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Mock Responses
+              Sample Requests and Responses
             
           </span>
         </div>
@@ -452,6 +452,8 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
@@ -460,7 +462,7 @@
   <span class="md-ellipsis">
     
   
-    Mock Responses
+    Sample Requests and Responses
   
 
     
@@ -478,7 +480,7 @@
   <span class="md-ellipsis">
     
   
-    Mock Responses
+    Sample Requests and Responses
   
 
     
@@ -494,6 +496,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -502,10 +506,333 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#unread-messages-example" class="md-nav__link">
+  <a href="#1-api-get-messagesunread" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Unread Messages Example
+        1️⃣ API: GET /messages/unread
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1️⃣ API: GET /messages/unread">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-request" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Request
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-response" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Response
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-api-get-messagesunread-degraded-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2️⃣ API: GET /messages/unread (Degraded Mode)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2️⃣ API: GET /messages/unread (Degraded Mode)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-response_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Response
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-api-post-message-detail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3️⃣ API: POST /message-detail
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3️⃣ API: POST /message-detail">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-request_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Request
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-response_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Response
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notes_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-api-post-mark-message-read" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4️⃣ API: POST /mark-message-read
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4️⃣ API: POST /mark-message-read">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-request_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Request
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-response_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Response
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notes_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-api-post-mark-message-read-already-read" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5️⃣ API: POST /mark-message-read (Already Read)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5️⃣ API: POST /mark-message-read (Already Read)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-response_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Response
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-api-post-message-detail-security-violation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6️⃣ API: POST /message-detail (Security Violation)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6️⃣ API: POST /message-detail (Security Violation)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-response_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Response
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-api-get-messagesunread-with-filters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7️⃣ API: GET /messages/unread With Filters
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7️⃣ API: GET /messages/unread With Filters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#request" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Request
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Response
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-api-post-mark-message-read-offline-queue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8️⃣ API: POST /mark-message-read — Offline Queue
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8️⃣ API: POST /mark-message-read — Offline Queue">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#response_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Response
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notes_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-api-get-messagesunread-after-reconciliation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9️⃣ API: GET /messages/unread — After Reconciliation
       
     </span>
   </a>
@@ -537,6 +864,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -545,10 +874,333 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#unread-messages-example" class="md-nav__link">
+  <a href="#1-api-get-messagesunread" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Unread Messages Example
+        1️⃣ API: GET /messages/unread
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1️⃣ API: GET /messages/unread">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-request" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Request
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-response" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Response
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-api-get-messagesunread-degraded-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2️⃣ API: GET /messages/unread (Degraded Mode)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2️⃣ API: GET /messages/unread (Degraded Mode)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-response_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Response
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-api-post-message-detail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3️⃣ API: POST /message-detail
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3️⃣ API: POST /message-detail">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-request_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Request
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-response_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Response
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notes_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-api-post-mark-message-read" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4️⃣ API: POST /mark-message-read
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4️⃣ API: POST /mark-message-read">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-request_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Request
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-response_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Response
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notes_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-api-post-mark-message-read-already-read" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5️⃣ API: POST /mark-message-read (Already Read)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5️⃣ API: POST /mark-message-read (Already Read)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-response_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Response
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-api-post-message-detail-security-violation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6️⃣ API: POST /message-detail (Security Violation)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6️⃣ API: POST /message-detail (Security Violation)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-response_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Response
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-api-get-messagesunread-with-filters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7️⃣ API: GET /messages/unread With Filters
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7️⃣ API: GET /messages/unread With Filters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#request" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Request
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Response
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-api-post-mark-message-read-offline-queue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8️⃣ API: POST /mark-message-read — Offline Queue
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8️⃣ API: POST /mark-message-read — Offline Queue">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#response_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Response
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notes_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-api-get-messagesunread-after-reconciliation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9️⃣ API: GET /messages/unread — After Reconciliation
       
     </span>
   </a>
@@ -575,10 +1227,17 @@
   
 
 
-  <h1>Mock Responses</h1>
-
-<h2 id="unread-messages-example">Unread Messages Example<a class="headerlink" href="#unread-messages-example" title="Permanent link">&para;</a></h2>
+<h1 id="api-request-response-examples">API Request + Response Examples<a class="headerlink" href="#api-request-response-examples" title="Permanent link">&para;</a></h1>
+<h2 id="1-api-get-messagesunread">1️⃣ API: GET /messages/unread<a class="headerlink" href="#1-api-get-messagesunread" title="Permanent link">&para;</a></h2>
+<p><strong>Purpose:</strong> Fetch unread messages for inbox list (system + bulk).</p>
+<h3 id="example-request">Example Request<a class="headerlink" href="#example-request" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="err">GET /messages/unread?page=1&amp;pageSize=20</span>
+<span class="err">Authorization: Bearer &lt;JWT&gt;</span>
+</code></pre></div>
+<h3 id="example-response">Example Response<a class="headerlink" href="#example-response" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;page&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;pageSize&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;totalUnread&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;messages&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">    </span><span class="p">{</span>
@@ -587,7 +1246,7 @@
 <span class="w">      </span><span class="nt">&quot;summary&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Your address has been updated successfully&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;system&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;unread&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-12-04T09:15:00Z&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;timestampUtc&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-12-04T09:15:00Z&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;category&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Account&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;actions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;acknowledge&quot;</span><span class="p">],</span>
 <span class="w">      </span><span class="nt">&quot;pushNotification&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
@@ -595,12 +1254,190 @@
 <span class="w">    </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;messageId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;67890&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Dividend Applied&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;summary&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Dividends applied for December for your portfolio&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;summary&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;December dividends applied to your portfolio&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bulk&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;unread&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-12-04T08:00:00Z&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;timestampUtc&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-12-04T08:00:00Z&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;category&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Finance&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;actions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;download&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;pushNotification&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;hasMore&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h3>
+<ul>
+<li>UI loads pages incrementally</li>
+<li>Unread count reflects <strong>persisted state</strong></li>
+<li>Local cache allowed, but must refresh on resume</li>
+</ul>
+<hr />
+<h2 id="2-api-get-messagesunread-degraded-mode">2️⃣ API: GET /messages/unread (Degraded Mode)<a class="headerlink" href="#2-api-get-messagesunread-degraded-mode" title="Permanent link">&para;</a></h2>
+<p><strong>Purpose:</strong> Bulk API failed — inbox still loads using system messages.</p>
+<h3 id="example-response_1">Example Response<a class="headerlink" href="#example-response_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;totalUnread&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;partialResult&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;messages&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;messageId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;88888&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Statement Ready&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;summary&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Your statement is available for download&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;system&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;unread&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;timestampUtc&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-12-03T12:10:00Z&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;category&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Finance&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;actions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;download&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;pushNotification&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="notes_1">Notes<a class="headerlink" href="#notes_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>partialResult=true</strong> signals degraded mode</li>
+<li>UI should still operate normally</li>
+<li>Logging mandatory for root-cause traceability</li>
+</ul>
+<hr />
+<h2 id="3-api-post-message-detail">3️⃣ API: POST /message-detail<a class="headerlink" href="#3-api-post-message-detail" title="Permanent link">&para;</a></h2>
+<p><strong>Purpose:</strong> Retrieve full message content for detail view.</p>
+<h3 id="example-request_1">Example Request<a class="headerlink" href="#example-request_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;userId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;U100001&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;messageId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;12345&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="example-response_2">Example Response<a class="headerlink" href="#example-response_2" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;messageId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;12345&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Address Change Confirmation&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Your address has been successfully updated and no additional actions are required.&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;system&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;unread&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;timestampUtc&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-12-04T09:15:00Z&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;localizedTimestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;04 Dec 2025, 09:15 AM&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;category&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Account&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;actions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;acknowledge&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;pushNotification&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;changeType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;profileUpdate&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;requiresAcknowledgement&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="notes_2">Notes<a class="headerlink" href="#notes_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Ownership validation enforced</li>
+<li>Content may include legal wording or formatted text</li>
+<li>UI should optionally show metadata-driven actions</li>
+</ul>
+<hr />
+<h2 id="4-api-post-mark-message-read">4️⃣ API: POST /mark-message-read<a class="headerlink" href="#4-api-post-mark-message-read" title="Permanent link">&para;</a></h2>
+<p><strong>Purpose:</strong> Persist read state + reduce unread count.</p>
+<h3 id="example-request_2">Example Request<a class="headerlink" href="#example-request_2" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;userId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;U100001&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;messageId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;12345&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;returnUnreadCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="example-response_3">Example Response<a class="headerlink" href="#example-response_3" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;unreadCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="notes_3">Notes<a class="headerlink" href="#notes_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Must update UI immediately (optimistic update)</li>
+<li>Reconcile after next fetch</li>
+<li>Prevent invalid transition (cannot "unread")</li>
+</ul>
+<hr />
+<h2 id="5-api-post-mark-message-read-already-read">5️⃣ API: POST /mark-message-read (Already Read)<a class="headerlink" href="#5-api-post-mark-message-read-already-read" title="Permanent link">&para;</a></h2>
+<p><strong>Purpose:</strong> Demonstrates valid read state constraints.</p>
+<h3 id="example-response_4">Example Response<a class="headerlink" href="#example-response_4" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;reason&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MessageAlreadyRead&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;unreadCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="6-api-post-message-detail-security-violation">6️⃣ API: POST /message-detail (Security Violation)<a class="headerlink" href="#6-api-post-message-detail-security-violation" title="Permanent link">&para;</a></h2>
+<p><strong>Purpose:</strong> Ownership enforcement</p>
+<h3 id="example-response_5">Example Response<a class="headerlink" href="#example-response_5" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;error&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MessageNotOwned&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;statusCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">403</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The requested message does not belong to the authenticated user&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="7-api-get-messagesunread-with-filters">7️⃣ API: GET /messages/unread With Filters<a class="headerlink" href="#7-api-get-messagesunread-with-filters" title="Permanent link">&para;</a></h2>
+<p><strong>Purpose:</strong> Narrow inbox by category or status</p>
+<h3 id="request">Request<a class="headerlink" href="#request" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="err">GET /messages/unread?status=unread&amp;category=CorporateAction&amp;page=1&amp;pageSize=20</span>
+<span class="err">Authorization: Bearer &lt;JWT&gt;</span>
+</code></pre></div>
+<h3 id="response">Response<a class="headerlink" href="#response" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;page&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;pageSize&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;filters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;unread&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;category&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CorporateAction&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;totalUnread&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;messages&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;messageId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;99123&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Corporate Restructuring Notice&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;summary&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Corporate restructuring that affects your portfolio&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bulk&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;unread&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;timestampUtc&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-11-30T11:00:00Z&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;category&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CorporateAction&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;actions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;view&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;pushNotification&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;hasMore&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="8-api-post-mark-message-read-offline-queue">8️⃣ API: POST /mark-message-read — Offline Queue<a class="headerlink" href="#8-api-post-mark-message-read-offline-queue" title="Permanent link">&para;</a></h2>
+<p><strong>Purpose:</strong> Offline-safe mutation</p>
+<h3 id="response_1">Response<a class="headerlink" href="#response_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;syncState&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;queued&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;localCacheUpdated&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;messageId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;99123&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="notes_4">Notes<a class="headerlink" href="#notes_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Local UI marks read immediately</li>
+<li>Sync occurs on reconnect</li>
+<li>Must reconcile unreadCount on next fetch</li>
+</ul>
+<hr />
+<h2 id="9-api-get-messagesunread-after-reconciliation">9️⃣ API: GET /messages/unread — After Reconciliation<a class="headerlink" href="#9-api-get-messagesunread-after-reconciliation" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;totalUnread&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;messages&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;messageId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;44555&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Profile Updated&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;summary&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Your personal profile is fully verified&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;system&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;unread&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;timestampUtc&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-12-01T10:20:00Z&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;category&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Profile&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;actions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;acknowledge&quot;</span><span class="p">],</span>
 <span class="w">      </span><span class="nt">&quot;pushNotification&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">]</span>
