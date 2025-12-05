@@ -8,11 +8,11 @@
       
       
       
-        <link rel="canonical" href="https://sandeepsehrawat.github.io/message-inbox-api-docs/mock_responses/">
+        <link rel="canonical" href="https://sandeepsehrawat.github.io/message-inbox-api-docs/problem_statement/">
       
       
-        <link rel="prev" href="../developer_notes/">
       
+        <link rel="next" href="../assumptions/">
       
       
         
@@ -23,7 +23,7 @@
     
     
       
-        <title>Mock Responses - Message Inbox API Low Level Design</title>
+        <title>Problem Statement - Message Inbox API Low Level Design</title>
       
     
     
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#unread-messages-example" class="md-skip">
+        <a href="#message-inbox-api-problem-statement-objective-and-overview" class="md-skip">
           Skip to content
         </a>
       
@@ -110,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Mock Responses
+              Problem Statement
             
           </span>
         </div>
@@ -227,10 +227,37 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../problem_statement/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem Statement
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -246,6 +273,59 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#problem-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem Statement
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objective" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objective
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overview-of-the-solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview of the Solution
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -443,35 +523,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Mock Responses
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../mock_responses/" class="md-nav__link">
         
   
   
@@ -487,35 +542,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#unread-messages-example" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Unread Messages Example
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -537,6 +563,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -545,10 +573,32 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#unread-messages-example" class="md-nav__link">
+  <a href="#problem-statement" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Unread Messages Example
+        Problem Statement
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objective" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objective
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overview-of-the-solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview of the Solution
       
     </span>
   </a>
@@ -575,37 +625,54 @@
   
 
 
-  <h1>Mock Responses</h1>
-
-<h2 id="unread-messages-example">Unread Messages Example<a class="headerlink" href="#unread-messages-example" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;totalUnread&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;messages&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;messageId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;12345&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Address Change Confirmation&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;summary&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Your address has been updated successfully&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;system&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;unread&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-12-04T09:15:00Z&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;category&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Account&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;actions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;acknowledge&quot;</span><span class="p">],</span>
-<span class="w">      </span><span class="nt">&quot;pushNotification&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;messageId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;67890&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Dividend Applied&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;summary&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Dividends applied for December for your portfolio&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bulk&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;unread&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-12-04T08:00:00Z&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;category&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Finance&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;actions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;download&quot;</span><span class="p">],</span>
-<span class="w">      </span><span class="nt">&quot;pushNotification&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">]</span>
-<span class="p">}</span>
-</code></pre></div>
+<h1 id="message-inbox-api-problem-statement-objective-and-overview">Message Inbox API: Problem Statement, Objective, and Overview<a class="headerlink" href="#message-inbox-api-problem-statement-objective-and-overview" title="Permanent link">&para;</a></h1>
+<h2 id="problem-statement">Problem Statement<a class="headerlink" href="#problem-statement" title="Permanent link">&para;</a></h2>
+<p>Investors and stakeholders need a <strong>centralized, reliable, and real-time message inbox</strong> to receive updates related to their accounts and investments. Messages can include:</p>
+<ul>
+<li><strong>System-level messages:</strong> Critical updates like account changes, corporate actions, or address updates.</li>
+<li><strong>Bulk messages:</strong> Updates such as dividend notifications, corporate action summaries, or other aggregated portfolio information.</li>
+</ul>
+<p>Key challenges include:</p>
+<ol>
+<li><strong>Integration Complexity:</strong> Messages originate from multiple backend systems, such as account management, corporate actions, and dividend processing systems.</li>
+<li><strong>Multi-channel Access:</strong> Users access messages via mobile and web applications.</li>
+<li><strong>Real-time Notifications:</strong> High-priority messages require push notifications or in-app alerts.</li>
+<li><strong>Unread/Read Tracking:</strong> Messages must maintain consistent read/unread status across all devices.</li>
+<li><strong>Scalability:</strong> Users may have hundreds or thousands of messages, requiring aggregation and pagination.</li>
+<li><strong>Validation &amp; Transformation:</strong> Messages from different sources may vary in structure and require standardization before display.</li>
+</ol>
+<hr />
+<h2 id="objective">Objective<a class="headerlink" href="#objective" title="Permanent link">&para;</a></h2>
+<p>Design a <strong>developer-ready Message Inbox API</strong> that:</p>
+<ol>
+<li>Aggregates messages from multiple backend sources.</li>
+<li>Validates and transforms messages for consistency.</li>
+<li>Supports multi-channel access (web and mobile) with caching for offline use.</li>
+<li>Tracks read/unread status accurately across devices.</li>
+<li>Triggers notifications for high-priority messages.</li>
+<li>Provides a <strong>complete OpenAPI specification</strong> ready for implementation.</li>
+</ol>
+<hr />
+<h2 id="overview-of-the-solution">Overview of the Solution<a class="headerlink" href="#overview-of-the-solution" title="Permanent link">&para;</a></h2>
+<p>The solution uses a <strong>System → Process → Channel (SPC) API architecture</strong>:</p>
+<ul>
+<li><strong>System APIs:</strong> Provide raw messages and user preferences.</li>
+<li><strong>Process API:</strong> </li>
+<li>Orchestrates multiple System APIs.</li>
+<li>Applies validation and transformations.</li>
+<li>Computes unread counts.</li>
+<li>Triggers push notifications when required.</li>
+<li><strong>Channel API:</strong> Exposes endpoints to web and mobile clients, manages caching, and delivers the final message data.</li>
+</ul>
+<p><strong>Key Features:</strong>
+- Supports system and bulk messages.
+- Critical fields: <code>messageId</code>, <code>title</code>, <code>content</code>, <code>timestamp</code>, <code>category</code>, <code>actions</code>, <code>pushNotification</code>.
+- Pagination and filtering for large inboxes.
+- Local caching on mobile/web clients for offline access.
+- Error handling to manage partial system failures.</p>
+<blockquote>
+<p>This documentation provides <strong>OpenAPI specifications, mock responses, functional and developer notes</strong>, and diagrams showing architecture and user flows, intended for developer implementation.</p>
+</blockquote>
 
 
 

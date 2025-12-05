@@ -25,7 +25,7 @@
     
     
       
-        <title>Sequence Diagram - Computeshare Message Inbox API</title>
+        <title>Sequence Diagrams - Message Inbox API Low Level Design</title>
       
     
     
@@ -51,6 +51,8 @@
       
     
     
+      <link rel="stylesheet" href="../styles.css">
+    
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -74,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#sequence-diagram-message-flow" class="md-skip">
+        <a href="#sequence-diagrams-message-inbox-low-level-design-lld" class="md-skip">
           Skip to content
         </a>
       
@@ -90,7 +92,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="Computeshare Message Inbox API" class="md-header__button md-logo" aria-label="Computeshare Message Inbox API" data-md-component="logo">
+    <a href=".." title="Message Inbox API Low Level Design" class="md-header__button md-logo" aria-label="Message Inbox API Low Level Design" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -104,13 +106,13 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Computeshare Message Inbox API
+            Message Inbox API Low Level Design
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Sequence Diagram
+              Sequence Diagrams
             
           </span>
         </div>
@@ -163,6 +165,18 @@
       
     
     
+      <div class="md-header__source">
+        <a href="https://github.com/sandeepsehrawat/messageinbox" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Message Inbox API
+  </div>
+</a>
+      </div>
+    
   </nav>
   
 </header>
@@ -188,16 +202,82 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Computeshare Message Inbox API" class="md-nav__button md-logo" aria-label="Computeshare Message Inbox API" data-md-component="logo">
+    <a href=".." title="Message Inbox API Low Level Design" class="md-nav__button md-logo" aria-label="Message Inbox API Low Level Design" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    Computeshare Message Inbox API
+    Message Inbox API Low Level Design
   </label>
   
+    <div class="md-nav__source">
+      <a href="https://github.com/sandeepsehrawat/messageinbox" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Message Inbox API
+  </div>
+</a>
+    </div>
+  
   <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../problem_statement/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem Statement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assumptions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Assumptions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
     
       
       
@@ -240,7 +320,7 @@
   <span class="md-ellipsis">
     
   
-    SPC Architecture
+    SPC Architecture Alignment
   
 
     
@@ -276,7 +356,7 @@
   <span class="md-ellipsis">
     
   
-    Sequence Diagram
+    Sequence Diagrams
   
 
     
@@ -432,20 +512,281 @@
                   
 
 
+  
+  
 
-<h1 id="sequence-diagram-message-flow">Sequence Diagram: Message Flow<a class="headerlink" href="#sequence-diagram-message-flow" title="Permanent link">&para;</a></h1>
-<p><img alt="Sequence Diagram" src="assets/sequence_diagram.png" /></p>
-<p><strong>Flow:</strong>
-1. User logs in → Channel API <code>/messages/unread</code>
-2. Process API orchestrates:
-   - SystemAPI_Messages → fetch raw messages
-   - SystemAPI_UserPrefs → fetch user preferences
-   - BulkAggregation API → aggregate bulk messages
-3. Apply validation &amp; transformations
-4. Trigger push notifications for messages with <code>pushNotification: true</code>
-5. Return messages to client → cache unread IDs &amp; show totalUnread
-6. User clicks a message → <code>/messages/{id}</code> → Process API returns full content
-7. Channel API → Process API: PATCH <code>/messages/{id}/read</code> → update unread count &amp; stop notifications</p>
+
+<h1 id="sequence-diagrams-message-inbox-low-level-design-lld">Sequence Diagrams – Message Inbox Low-Level Design (LLD)<a class="headerlink" href="#sequence-diagrams-message-inbox-low-level-design-lld" title="Permanent link">&para;</a></h1>
+<p>This section describes the <strong>runtime behaviour</strong> of the Message Inbox solution using sequence diagrams.<br />
+It uses <strong>concrete component names</strong> so developers can map them directly to services and APIs.</p>
+<p>Components referenced:</p>
+<ul>
+<li><strong>Investor Client (Web/Mobile)</strong> – the authenticated user interface (browser or mobile app).</li>
+<li><strong>InvestorInboxChannelAPI</strong> – the channel-facing API layer exposing REST endpoints to clients.</li>
+<li><strong>InvestorInboxProcessAPI</strong> – the process layer responsible for orchestration, validation, transformation, and unread count computation.</li>
+<li><strong>MessageSystemAPI</strong> – system API that exposes raw message data (system + persisted bulk messages).</li>
+<li><strong>UserPreferenceSystemAPI</strong> – system API for user notification preferences and localisation settings.</li>
+<li><strong>BulkMessageSystemAPI</strong> – system API that stores and serves bulk messages addressed to many users.</li>
+<li><strong>(Optional) PushNotificationService</strong> – external service used by the platform to send push notifications to devices.</li>
+</ul>
+<hr />
+<h1 id="1-sequence-fetch-unread-messages-on-login">1️⃣ Sequence: Fetch Unread Messages on Login<a class="headerlink" href="#1-sequence-fetch-unread-messages-on-login" title="Permanent link">&para;</a></h1>
+<div class="zoom-image">
+  <img src="../images/seq1.svg" />
+</div>
+
+<p><strong>Goal:</strong> When the user logs in or opens the inbox, the client retrieves all unread messages (system + bulk), plus the <code>totalUnread</code> count.</p>
+<p><strong>Flow (Step-by-Step):</strong></p>
+<ol>
+<li>
+<p><strong>Investor Client (Web/Mobile)</strong><br />
+     Sends a request to fetch unread messages:
+      <code>GET /messages/unread?userId={userId}</code>     to <strong>InvestorInboxChannelAPI</strong>.</p>
+</li>
+<li>
+<p><strong>InvestorInboxChannelAPI</strong><br />
+   Forwards the request to <strong>InvestorInboxProcessAPI</strong> using an internal call such as:
+     <code>FetchUnreadMessages(userId)</code></p>
+</li>
+<li>
+<p><strong>InvestorInboxProcessAPI → MessageSystemAPI</strong><br />
+   Calls:
+     <code>GetUserMessages(userId)</code>   to retrieve all <strong>user-specific system messages</strong> (e.g. address changes, corporate actions).</p>
+</li>
+<li>
+<p><strong>InvestorInboxProcessAPI → UserPreferenceSystemAPI</strong><br />
+   Calls:
+     <code>GetUserPreferences(userId)</code>    to retrieve user preferences (e.g. notification settings, locale, time zone).</p>
+</li>
+<li>
+<p><strong>InvestorInboxProcessAPI → BulkMessageSystemAPI</strong><br />
+   Calls:
+    <code>GetBulkMessagesForUser(userId)</code>     to get <strong>bulk messages</strong> relevant to this user (e.g. dividend events, portfolio-wide updates).</p>
+</li>
+<li>
+<p><strong>System APIs → InvestorInboxProcessAPI</strong>  </p>
+<p><code>MessageSystemAPI</code> returns raw system messages.
+ <code>UserPreferenceSystemAPI</code> returns user preferences.
+ <code>BulkMessageSystemAPI</code> returns raw bulk messages filtered for this user.</p>
+</li>
+<li>
+<p><strong>InvestorInboxProcessAPI (internal processing)</strong><br />
+      Validates all messages (required fields, ownership, timestamp formats).
+      Aggregates system and bulk messages into a unified list.
+      Applies transformations:</p>
+<ul>
+<li>Localises timestamps using user preferences.</li>
+<li>Maps backend fields to the <strong>MessageSummary</strong> DTO.</li>
+</ul>
+<p>Computes <code>totalUnread</code> by counting messages with <code>status = unread</code>.</p>
+<p>Optionally determines which messages should set <code>pushNotification = true</code>.</p>
+</li>
+<li>
+<p><strong>InvestorInboxProcessAPI → InvestorInboxChannelAPI</strong><br />
+   Returns a DTO such as:    <code>UnreadMessagesDTO { totalUnread, messages[] }</code></p>
+</li>
+<li>
+<p><strong>InvestorInboxChannelAPI → Investor Client</strong><br />
+   Responds with: <code>200 OK</code> + JSON (<code>totalUnread</code>, <code>messages[]</code>)</p>
+</li>
+<li>
+<p><strong>Investor Client (Web/Mobile)</strong><br />
+      Caches the <code>messageId</code>s and summary data locally (for fast rendering and offline support).
+      Displays the <strong>unread badge/count</strong> and message list in the inbox UI.</p>
+</li>
+</ol>
+<hr />
+<h1 id="2-sequence-view-full-message-content">2️⃣ Sequence: View Full Message Content<a class="headerlink" href="#2-sequence-view-full-message-content" title="Permanent link">&para;</a></h1>
+<div class="zoom-image">
+  <img src="../images/seq2.svg" />
+</div>
+
+<p><strong>Goal:</strong> When the user taps/clicks a message in the inbox, the client retrieves the full message content.</p>
+<p><strong>Flow (Step-by-Step):</strong></p>
+<ol>
+<li>
+<p><strong>Investor Client (Web/Mobile)</strong><br />
+   Sends:    <code>GET /messages/{messageId}</code>    to <strong>InvestorInboxChannelAPI</strong>.</p>
+</li>
+<li>
+<p><strong>InvestorInboxChannelAPI</strong><br />
+   Calls <strong>InvestorInboxProcessAPI</strong>:  <code>GetMessageDetail(messageId, userId)</code></p>
+</li>
+<li>
+<p><strong>InvestorInboxProcessAPI → MessageSystemAPI</strong><br />
+   Calls: <code>GetMessageById(messageId)</code>     to retrieve the raw message record.</p>
+</li>
+<li>
+<p><strong>MessageSystemAPI → InvestorInboxProcessAPI</strong><br />
+   Returns the message entity, including ownership and all raw fields.</p>
+</li>
+<li>
+<p><strong>InvestorInboxProcessAPI (internal processing)</strong>  </p>
+</li>
+<li>
+<p>Validates that the <code>messageId</code> belongs to the current <code>userId</code>.  </p>
+</li>
+<li>
+<p>Applies transformation/mapping:</p>
+<ul>
+<li>Raw entity → <strong>MessageDetailDTO</strong> (title, full content, type, category, actions, pushNotification flag, timestamp).</li>
+</ul>
+</li>
+<li>
+<p>Enforces any business rules (e.g. hide certain fields based on user role/preferences if needed).</p>
+</li>
+<li>
+<p><strong>InvestorInboxProcessAPI → InvestorInboxChannelAPI</strong><br />
+   Returns: <code>MessageDetailDTO</code></p>
+</li>
+<li>
+<p><strong>InvestorInboxChannelAPI → Investor Client</strong><br />
+   Responds with: <code>200 OK</code> + JSON (full message content)</p>
+</li>
+<li>
+<p><strong>Investor Client (Web/Mobile)</strong>  </p>
+</li>
+<li>Renders full message content screen.</li>
+<li>May optimistically update local state to treat this message as “viewed”.</li>
+</ol>
+<hr />
+<h1 id="3-sequence-mark-message-as-read-sync-count">3️⃣ Sequence: Mark Message as Read &amp; Sync Count<a class="headerlink" href="#3-sequence-mark-message-as-read-sync-count" title="Permanent link">&para;</a></h1>
+<div class="zoom-image">
+  <img src="../images/seq3.svg" />
+</div>
+
+<p><strong>Goal:</strong> When the user has read a message, the client marks it as read so that unread counts stay consistent across devices.</p>
+<p><strong>Flow (Step-by-Step):</strong></p>
+<ol>
+<li>
+<p><strong>Investor Client (Web/Mobile)</strong><br />
+   Sends: <code>PATCH /messages/{messageId}/read</code>   to <strong>InvestorInboxChannelAPI</strong>.</p>
+</li>
+<li>
+<p><strong>InvestorInboxChannelAPI</strong><br />
+   Calls <strong>InvestorInboxProcessAPI</strong>: <code>MarkMessageRead(messageId, userId)</code></p>
+</li>
+<li>
+<p><strong>InvestorInboxProcessAPI → MessageSystemAPI</strong><br />
+   Calls: <code>UpdateMessageReadFlag(messageId, userId)</code>    to persist the read status in the underlying message store.</p>
+</li>
+<li>
+<p><strong>MessageSystemAPI → InvestorInboxProcessAPI</strong><br />
+   Returns a success result (e.g. <code>Update OK</code>).</p>
+</li>
+<li>
+<p><strong>InvestorInboxProcessAPI (internal processing)</strong>  </p>
+</li>
+<li>
+<p>Optionally recalculates <code>unreadCount</code> for this user (or uses a cached counter that decrements by 1).</p>
+</li>
+<li>
+<p>Ensures that the change will be reflected in future calls to <code>/messages/unread</code>.</p>
+</li>
+<li>
+<p><strong>InvestorInboxProcessAPI → InvestorInboxChannelAPI</strong><br />
+   Returns: Either no body (<code>204 No Content</code>), or a small DTO with the <strong>new <code>unreadCount</code></strong>.</p>
+</li>
+<li>
+<p><strong>InvestorInboxChannelAPI → Investor Client</strong><br />
+   Responds with: <code>204 No Content</code><br />
+<strong>or</strong><br />
+<code>200 OK</code> + JSON with updated unread count.</p>
+</li>
+<li>
+<p><strong>Investor Client (Web/Mobile)</strong>  </p>
+</li>
+<li>Updates the local cache to mark this message as <code>read</code>.</li>
+<li>Updates the badge/unread count in the UI.</li>
+<li>On next login (or on another device), the updated status will be fetched from the backend and stay consistent.</li>
+</ol>
+<hr />
+<h1 id="4-sequence-bulk-message-creation-and-later-display">4️⃣ Sequence: Bulk Message Creation and Later Display<a class="headerlink" href="#4-sequence-bulk-message-creation-and-later-display" title="Permanent link">&para;</a></h1>
+<div class="zoom-image">
+  <img src="../images/seq4.svg" />
+</div>
+
+<p><strong>Goal:</strong> Model how a bulk message (e.g. dividend notification) is created for many users and later appears in each user’s inbox.</p>
+<h3 id="41-bulk-message-creation-back-office">4.1 Bulk Message Creation (Back-Office)<a class="headerlink" href="#41-bulk-message-creation-back-office" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p><strong>Back-Office User (Dividend Ops Portal)</strong><br />
+   Uses an internal portal to create a bulk message for a corporate event:    e.g. “Dividend applied for Event X to eligible holders”.</p>
+</li>
+<li>
+<p><strong>Dividend Ops Portal → BulkMessageSystemAPI</strong><br />
+   Sends something like: <code>CreateBulkMessage(dividendEventId, criteria)</code><br />
+   where <code>criteria</code> identifies which investors/users should receive it.</p>
+</li>
+<li>
+<p><strong>BulkMessageSystemAPI → MessageSystemAPI</strong>  </p>
+</li>
+<li>Derives the list of affected <code>userId</code>s.</li>
+<li>
+<p>Persists bulk message records linked to those users (or stores a reference + targeting rules).</p>
+</li>
+<li>
+<p><strong>MessageSystemAPI → BulkMessageSystemAPI</strong><br />
+    Confirms persistence of bulk message entries: <code>Stored OK</code>.</p>
+</li>
+</ol>
+<blockquote>
+<p>At this stage, messages are <strong>available in backend storage</strong>, but users haven’t pulled them yet.</p>
+</blockquote>
+<hr />
+<h3 id="42-bulk-message-delivery-to-individual-user">4.2 Bulk Message Delivery to Individual User<a class="headerlink" href="#42-bulk-message-delivery-to-individual-user" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p><strong>Investor Client (Web/Mobile)</strong><br />
+   Later, when an investor logs in or opens their inbox, it calls: <code>GET /messages/unread?userId={userId}</code>     to <strong>InvestorInboxChannelAPI</strong>.</p>
+</li>
+<li>
+<p><strong>InvestorInboxChannelAPI → InvestorInboxProcessAPI</strong><br />
+   Calls: <code>FetchUnreadMessages(userId)</code></p>
+</li>
+<li>
+<p><strong>InvestorInboxProcessAPI → BulkMessageSystemAPI</strong><br />
+   Calls: <code>GetBulkMessagesForUser(userId)</code>    to get just the bulk messages relevant to this user.</p>
+</li>
+<li>
+<p><strong>InvestorInboxProcessAPI → MessageSystemAPI</strong><br />
+   Calls: <code>GetUserMessages(userId)</code>    to fetch user-specific system messages.</p>
+</li>
+<li>
+<p><strong>BulkMessageSystemAPI &amp; MessageSystemAPI → InvestorInboxProcessAPI</strong><br />
+   Return: User-specific bulk messages. and  User-specific system messages.</p>
+</li>
+<li>
+<p><strong>InvestorInboxProcessAPI (internal processing)</strong><br />
+     Merges and de-duplicates system and bulk messages.
+     Validates, transforms, and maps to <code>MessageSummary</code> DTOs.
+     Computes <code>totalUnread</code>.
+     Applies any channel-specific or business rules (e.g., sort by timestamp descending).</p>
+</li>
+<li>
+<p><strong>InvestorInboxProcessAPI → InvestorInboxChannelAPI</strong><br />
+   Returns: <code>UnreadMessagesDTO</code> containing <code>totalUnread</code> and <code>messages[]</code>.</p>
+</li>
+<li>
+<p><strong>InvestorInboxChannelAPI → Investor Client</strong><br />
+   Returns: <code>200 OK</code> + JSON.</p>
+</li>
+<li>
+<p><strong>Investor Client (Web/Mobile)</strong><br />
+     Renders bulk and system messages together in the inbox.
+     Indicates unread status and, if applicable, any <code>actions</code> like “download statement”.</p>
+</li>
+</ol>
+<hr />
+<h3 id="how-developers-should-use-these-diagrams">How Developers Should Use These Diagrams<a class="headerlink" href="#how-developers-should-use-these-diagrams" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Treat <strong>InvestorInboxChannelAPI</strong>, <strong>InvestorInboxProcessAPI</strong>, <strong>MessageSystemAPI</strong>, <strong>UserPreferenceSystemAPI</strong>, and <strong>BulkMessageSystemAPI</strong> as <strong>concrete services</strong> or bounded contexts.</li>
+<li>Use the sequence diagrams to:</li>
+<li>Implement method signatures, DTOs, and orchestration logic.</li>
+<li>Ensure that read/unread status, bulk message handling, and push notification decisions are implemented in the <strong>InvestorInboxProcessAPI</strong>.</li>
+<li>Use the <strong>MessageSummary</strong> and <strong>MessageDetail</strong> models from the API spec to shape responses in the Channel API layer.</li>
+</ul>
+<p>These diagrams, together with the <strong>OpenAPI specification, Functional Notes, Assumptions, and Developer Notes</strong>, form a complete <strong>Low-Level Design (LLD)</strong> for the Message Inbox feature.</p>
 
 
 

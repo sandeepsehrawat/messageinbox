@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://sandeepsehrawat.github.io/message-inbox-api-docs/spc_architecture/">
+        <link rel="canonical" href="https://sandeepsehrawat.github.io/message-inbox-api-docs/assumptions/">
       
       
-        <link rel="prev" href="..">
+        <link rel="prev" href="../problem_statement/">
       
       
-        <link rel="next" href="../sequence_diagram/">
+        <link rel="next" href="..">
       
       
         
@@ -25,7 +25,7 @@
     
     
       
-        <title>SPC Architecture Alignment - Message Inbox API Low Level Design</title>
+        <title>Assumptions - Message Inbox API Low Level Design</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#spc-architecture-overview" class="md-skip">
+        <a href="#assumptions-for-message-inbox-api-design-lld" class="md-skip">
           Skip to content
         </a>
       
@@ -112,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              SPC Architecture Alignment
+              Assumptions
             
           </span>
         </div>
@@ -256,10 +256,37 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../assumptions/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Assumptions
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -275,6 +302,225 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-assumptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture Assumptions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Architecture Assumptions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#spc-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SPC Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pull-based-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pull-Based Model
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#push-notifications-optional-complementary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Push Notifications (Optional / Complementary)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#central-bulk-message-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Central Bulk Message System
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-device-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-Device Support
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#offline-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Offline Caching
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Handling
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functional-assumptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Functional Assumptions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Functional Assumptions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#message-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Message Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validation-transformation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validation &amp; Transformation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unread-read-tracking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unread / Read Tracking
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scalability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scalability
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#push-notifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Push Notifications
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aggregation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aggregation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operational-assumptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operational Assumptions
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -310,37 +556,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    SPC Architecture Alignment
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../spc_architecture/" class="md-nav__link">
         
   
   
@@ -356,92 +575,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#system-apis" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        System APIs
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#process-apis" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Process APIs
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#channel-apis" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Channel APIs
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-the-layers-work-together" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        How the Layers Work Together
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#business-value-of-spc-architecture" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Business Value of SPC Architecture
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#typical-use-cases" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Typical Use Cases
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -608,65 +741,198 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#system-apis" class="md-nav__link">
+  <a href="#architecture-assumptions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        System APIs
+        Architecture Assumptions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Architecture Assumptions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#spc-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SPC Architecture
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#process-apis" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#pull-based-model" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Process APIs
+        Pull-Based Model
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#channel-apis" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#push-notifications-optional-complementary" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Channel APIs
+        Push Notifications (Optional / Complementary)
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#how-the-layers-work-together" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#central-bulk-message-system" class="md-nav__link">
     <span class="md-ellipsis">
       
-        How the Layers Work Together
+        Central Bulk Message System
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#business-value-of-spc-architecture" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#multi-device-support" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Business Value of SPC Architecture
+        Multi-Device Support
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#typical-use-cases" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#offline-caching" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Typical Use Cases
+        Offline Caching
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Handling
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functional-assumptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Functional Assumptions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Functional Assumptions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#message-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Message Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validation-transformation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validation &amp; Transformation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unread-read-tracking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unread / Read Tracking
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scalability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scalability
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#push-notifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Push Notifications
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aggregation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aggregation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operational-assumptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operational Assumptions
       
     </span>
   </a>
@@ -693,109 +959,114 @@
   
 
 
-<h1 id="spc-architecture-overview">SPC Architecture Overview<a class="headerlink" href="#spc-architecture-overview" title="Permanent link">&para;</a></h1>
-<p>The <strong>SPC (System – Process – Channel)</strong> architecture is a layered API design pattern used to logically separate responsibilities. It helps simplify solution design, maximize reuse, and improve scalability and maintainability.</p>
-<hr />
-<h2 id="system-apis">System APIs<a class="headerlink" href="#system-apis" title="Permanent link">&para;</a></h2>
+<h1 id="assumptions-for-message-inbox-api-design-lld">Assumptions for Message Inbox API Design (LLD)<a class="headerlink" href="#assumptions-for-message-inbox-api-design-lld" title="Permanent link">&para;</a></h1>
+<h2 id="architecture-assumptions">Architecture Assumptions<a class="headerlink" href="#architecture-assumptions" title="Permanent link">&para;</a></h2>
 <blockquote>
-<p><strong>Primary Role:</strong> Provide raw, unprocessed data directly from backend systems.</p>
-</blockquote>
-<p>System APIs:
-- Interact with source systems or databases
-- Expose reusable CRUD-style endpoints
-- Contain minimal or no business rules
-- Perform basic input/output validation only
-- Maintain a stable interface across consumers</p>
-<p><strong>Example System APIs</strong>
-- <code>GetUserProfile</code>
-- <code>GetAccountData</code>
-- <code>GetHoldings</code>
-- <code>GetRawMessages</code></p>
-<hr />
-<h2 id="process-apis">Process APIs<a class="headerlink" href="#process-apis" title="Permanent link">&para;</a></h2>
-<blockquote>
-<p><strong>Primary Role:</strong> Orchestrate business rules and convert raw data into client-ready output.</p>
-</blockquote>
-<p>Process APIs:
-- Call and combine multiple System APIs
-- Apply transformations, enrichment, filtering, aggregation
-- Validate fields, enforce security and authorization
-- Implement message formatting, unread count logic, caching, and data normalization
-- Contain all <strong>business logic</strong> for inbox processing</p>
-<p><strong>Example Process APIs</strong>
-- <code>GetUserInbox</code>
-- <code>ComputeUnreadCount</code>
-- <code>PrepareDividendMessageFeed</code></p>
-<hr />
-<h2 id="channel-apis">Channel APIs<a class="headerlink" href="#channel-apis" title="Permanent link">&para;</a></h2>
-<blockquote>
-<p><strong>Primary Role:</strong> Deliver the final API output to client-facing applications (mobile, web, portals).</p>
-</blockquote>
-<p>Channel APIs:
-- Adapt Process API outputs for specific channels
-- Apply pagination, sorting, localization, and UI formatting
-- Optimize responses for device performance and usability
-- Contain minimal logic; they depend on the Process API for actual computation</p>
-<p><strong>Example Channel Endpoints</strong>
-- <code>/messages/unread</code>
-- <code>/messages/latest</code>
-- <code>/messages/read/{id}</code></p>
-<hr />
-<h2 id="how-the-layers-work-together">How the Layers Work Together<a class="headerlink" href="#how-the-layers-work-together" title="Permanent link">&para;</a></h2>
-<div class="zoom-image">
-  <img src="../images/spc.jpg" />
-</div>
-
-<ol>
-<li>A user opens the web application or mobile app.</li>
-<li>The <strong>Channel API</strong> receives a request (e.g., <code>/messages/unread</code>).</li>
-<li>The Channel API forwards the request to an appropriate <strong>Process API</strong>.</li>
-<li>The Process API orchestrates backend calls:<ul>
-<li>Queries multiple <strong>System APIs</strong>, such as <code>SystemAPI_Messages</code> and <code>SystemAPI_UserPreferences</code></li>
-<li>Aggregates, filters, and validates returned data</li>
-<li>Applies message-level business rules (e.g., unread counts, formatting, priority logic)</li>
-</ul>
-</li>
-<li>The Process API returns a complete, fully prepared payload to the Channel API.</li>
-<li>The Channel API formats this payload for the requesting device and returns the response.</li>
-</ol>
-<hr />
-<h2 id="business-value-of-spc-architecture">Business Value of SPC Architecture<a class="headerlink" href="#business-value-of-spc-architecture" title="Permanent link">&para;</a></h2>
-<blockquote>
-<p><strong>Why SPC matters</strong></p>
-</blockquote>
+<p><strong>NOTE – This Low-Level Design (LLD) primarily defines the Process API for the Message Inbox solution.</strong></p>
 <ul>
-<li>
-<p><strong>Reusability</strong><br />
-  System APIs serve multiple Process APIs without duplication.</p>
-</li>
-<li>
-<p><strong>Clear Separation of Concerns</strong><br />
-  All orchestration and domain rules reside in Process APIs — Channel APIs remain lightweight.</p>
-</li>
-<li>
-<p><strong>Scalability</strong><br />
-  Channel APIs scale independently and enable channel-specific optimization (mobile, web, portals).</p>
-</li>
-<li>
-<p><strong>Maintainability</strong><br />
-  Feature enhancements and new use cases only require changes at the Process layer, preserving Channel and System stability.</p>
-</li>
+<li>Channel API considerations are included to outline how the UI will consume the messages (pagination, caching, unread counts, push handling).</li>
+<li>System API considerations are treated as upstream dependencies assumed to already exist (raw data, bulk store, user preferences, message metadata).</li>
+<li>The focus of this LLD is on orchestration, validation, transformation, unread computation, and integration logic inside the <strong>Process API</strong>, because that is where the actual business rules, aggregation, and message preparation for the client occur.</li>
 </ul>
-<hr />
-<h2 id="typical-use-cases">Typical Use Cases<a class="headerlink" href="#typical-use-cases" title="Permanent link">&para;</a></h2>
-<blockquote>
-<p>Where SPC shines in a Message Inbox solution:</p>
 </blockquote>
+<h3 id="spc-architecture"><strong>SPC Architecture</strong><a class="headerlink" href="#spc-architecture" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Building actionable unread messages from multiple backend sources</li>
-<li>Enforcing read/unread tracking and cross-device synchronization</li>
-<li>Merging bulk and system messages into a unified inbox</li>
-<li>Localizing timestamps, applying preferences, and formatting content</li>
-<li>Delivering client-ready outputs optimized for UX and performance</li>
+<li>The API design follows a System → Process → Channel (SPC) architecture.</li>
+<li>System APIs provide raw data.</li>
+<li>Process APIs orchestrate, validate, transform, and compute unread counts.</li>
+<li>Channel APIs expose endpoints to web and mobile clients.</li>
 </ul>
 <hr />
-<p><strong><em>End of SPC Architecture Overview</em></strong></p>
+<h3 id="pull-based-model"><strong>Pull-Based Model</strong><a class="headerlink" href="#pull-based-model" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The solution is primarily pull-based; users fetch messages when they log in or refresh their inbox.</li>
+<li>System messages are user-specific and available immediately on login.</li>
+<li>Bulk messages exist in a centralized bulk message store; they are aggregated and filtered per user at fetch time.</li>
+</ul>
+<hr />
+<h3 id="push-notifications-optional-complementary"><strong>Push Notifications (Optional / Complementary)</strong><a class="headerlink" href="#push-notifications-optional-complementary" title="Permanent link">&para;</a></h3>
+<ul>
+<li>High-priority messages may trigger push notifications or in-app alerts.</li>
+<li>Push notifications only signal the user; full message content is retrieved via the pull API.</li>
+</ul>
+<hr />
+<h3 id="central-bulk-message-system"><strong>Central Bulk Message System</strong><a class="headerlink" href="#central-bulk-message-system" title="Permanent link">&para;</a></h3>
+<ul>
+<li>A centralized system manages the creation and storage of bulk messages for multiple users.</li>
+<li>Users do not store bulk messages locally until they fetch them from the Process API.</li>
+</ul>
+<hr />
+<h3 id="multi-device-support"><strong>Multi-Device Support</strong><a class="headerlink" href="#multi-device-support" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Users may access the inbox via multiple devices (mobile and web).</li>
+<li>Read/unread status must be synchronized across devices.</li>
+</ul>
+<hr />
+<h3 id="offline-caching"><strong>Offline Caching</strong><a class="headerlink" href="#offline-caching" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Mobile clients cache unread message IDs and content for offline viewing.</li>
+<li>Web clients may cache in session storage.</li>
+<li>Offline updates (e.g., marking a message read) are synced once online.</li>
+</ul>
+<hr />
+<h3 id="error-handling"><strong>Error Handling</strong><a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Partial failures in System APIs or Bulk APIs do not break the entire inbox fetch.</li>
+<li>Error codes include standard HTTP responses: <code>401</code>, <code>404</code>, <code>500</code>.</li>
+</ul>
+<hr />
+<h2 id="functional-assumptions">Functional Assumptions<a class="headerlink" href="#functional-assumptions" title="Permanent link">&para;</a></h2>
+<h3 id="message-types"><strong>Message Types</strong><a class="headerlink" href="#message-types" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>System Messages:</strong> Critical updates, account changes, corporate actions.</li>
+<li><strong>Bulk Messages:</strong> Aggregated notifications, such as dividends or portfolio updates.</li>
+</ul>
+<hr />
+<h3 id="validation-transformation"><strong>Validation &amp; Transformation</strong><a class="headerlink" href="#validation-transformation" title="Permanent link">&para;</a></h3>
+<ul>
+<li>All messages must have mandatory fields: <code>messageId</code>, <code>title</code>, <code>content</code>, <code>timestamp</code>.</li>
+<li>Bulk messages are aggregated and filtered per user.</li>
+<li>Timestamps may be localized based on user preferences.</li>
+</ul>
+<hr />
+<h3 id="unread-read-tracking"><strong>Unread / Read Tracking</strong><a class="headerlink" href="#unread-read-tracking" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Unread counts are maintained on the client and in the Process API.</li>
+<li>Read status updates propagate to all devices for consistency.</li>
+</ul>
+<hr />
+<h3 id="scalability"><strong>Scalability</strong><a class="headerlink" href="#scalability" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Users may have hundreds or thousands of messages.</li>
+<li>Pagination and filtering are applied to reduce payloads.</li>
+</ul>
+<hr />
+<h3 id="security"><strong>Security</strong><a class="headerlink" href="#security" title="Permanent link">&para;</a></h3>
+<ul>
+<li>APIs are secured with JWT authentication.</li>
+<li>User ID is validated from the token for all API calls.</li>
+</ul>
+<hr />
+<h3 id="push-notifications"><strong>Push Notifications</strong><a class="headerlink" href="#push-notifications" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Only messages flagged <code>pushNotification: true</code> trigger notifications.</li>
+<li>Notification respects user preferences (opt-in/out).</li>
+</ul>
+<hr />
+<h3 id="aggregation"><strong>Aggregation</strong><a class="headerlink" href="#aggregation" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Bulk messages are aggregated per user at fetch time.</li>
+<li>Aggregation ensures that each user sees only relevant messages.</li>
+</ul>
+<hr />
+<h2 id="operational-assumptions">Operational Assumptions<a class="headerlink" href="#operational-assumptions" title="Permanent link">&para;</a></h2>
+<ul>
+<li>System APIs and Bulk APIs are assumed to be available and responsive most of the time.</li>
+<li>Messages remain in the inbox until marked read or archived.</li>
+<li>Push notifications may be delayed in case of device offline or network issues.</li>
+<li>The design allows new message types or additional backend systems to be integrated without major changes.</li>
+</ul>
+<hr />
 
 
 

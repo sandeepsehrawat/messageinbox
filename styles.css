@@ -1,0 +1,11 @@
+.zoom-image {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.zoom-image img {
+  width: 2000px;
+}
+.md-main__inner {
+    max-width: 2000px !important;
+}
