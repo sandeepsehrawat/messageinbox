@@ -1,0 +1,16 @@
+/* Increase max page width */
+.wy-nav-content {
+    max-width: 1400px !important;   /* default is ~800px */
+}
+
+/* Make images and SVGs scale responsively */
+.wy-nav-content img,
+.wy-nav-content svg {
+    max-width: 100% !important;
+    height: auto !important;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* OPTIONAL:
