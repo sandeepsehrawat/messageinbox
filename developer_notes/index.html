@@ -430,6 +430,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Developer Notes
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -446,6 +464,113 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caching
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#push-notifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Push Notifications
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#edge-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Edge Cases
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-recommendations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing Recommendations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#assumptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assumptions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-developer-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additional Developer Considerations
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -498,6 +623,102 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caching
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#push-notifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Push Notifications
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#edge-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Edge Cases
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-recommendations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing Recommendations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#assumptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assumptions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-developer-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additional Developer Considerations
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -518,34 +739,207 @@
 
 <h1 id="developer-notes">Developer Notes<a class="headerlink" href="#developer-notes" title="Permanent link">&para;</a></h1>
 <blockquote>
-<p>“All DTO schemas are defined inside the OpenAPI under <code>components.schemas</code> which should be treated as the canonical data contract for message inbox LLD.</p>
+<p>All DTO schemas are defined inside the OpenAPI under <code>components.schemas</code>.<br />
+Treat those as the <strong>canonical data contracts</strong> for the Message Inbox LLD.</p>
 </blockquote>
-<p><strong>Caching:</strong>
-- Mobile → local cache
-- Web → session storage</p>
-<p><strong>Push Notifications:</strong>
-- Process API triggers push if <code>pushNotification = true</code>
-- Respect user preferences
-- Stop after read</p>
-<p><strong>Edge Cases:</strong>
-- Offline mode
-- Partial message fetch
-- Multi-device read/unread sync</p>
-<p><strong>Testing Recommendations:</strong>
-- Validate unread count sync
-- Check transformations &amp; aggregation
-- Test error responses</p>
-<p><strong>Security:</strong>
-- JWT authentication
-- Validate <code>userId</code> against token</p>
-<p><strong>Performance:</strong>
-- Pagination for large inboxes
-- Aggregate bulk messages to reduce payload</p>
-<p><strong>Assumptions:</strong>
-- Mobile/web apps cache unread IDs
-- System APIs respond correctly
-- Push handled via existing service (Firebase/APNs)
-- Bulk messages aggregated to reduce client load</p>
+<hr />
+<h2 id="caching">Caching<a class="headerlink" href="#caching" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Mobile:</strong></li>
+<li>Use local cache (e.g. SQLite / secure storage) for <code>messages[]</code> and <code>totalUnread</code>.</li>
+<li>Refresh cache on:<ul>
+<li>app resume,</li>
+<li>explicit pull-to-refresh,</li>
+<li>successful mark-as-read.</li>
+</ul>
+</li>
+<li><strong>Web:</strong><ul>
+<li>Use session storage (or in-memory cache) for the current page of messages.</li>
+<li>Always re-fetch on full page reload or login.</li>
+</ul>
+</li>
+<li><strong>Rules:</strong></li>
+<li>Cache is an <strong>optimization only</strong> – server state (Process/System APIs) is source of truth.</li>
+<li>After any <strong>mutating operation</strong> (mark read), either:<ul>
+<li>update cache locally, and/or</li>
+<li>re-fetch <code>/messages/unread</code> to reconcile.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="push-notifications">Push Notifications<a class="headerlink" href="#push-notifications" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Triggering:</strong></li>
+<li>Process layer (or upstream command services) should only trigger push when:<ul>
+<li><code>status = "unread"</code>,</li>
+<li><code>pushNotification = true</code>,</li>
+<li>user preferences allow notifications.</li>
+</ul>
+</li>
+<li><strong>Behaviour after read:</strong></li>
+<li>Once message is marked read:<ul>
+<li>no further notifications for that message,</li>
+<li>decremented badge count on device (if supported by push provider).</li>
+</ul>
+</li>
+<li><strong>Delivery:</strong><ul>
+<li>Use existing notification infrastructure (e.g. Firebase/APNs) via a <code>NotificationDispatchService</code>.</li>
+<li>Device token management and invalid token cleanup handled centrally, not in inbox code.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="edge-cases">Edge Cases<a class="headerlink" href="#edge-cases" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Offline mode (mobile):</strong><ul>
+<li>Allow reading from cached messages.</li>
+<li>Queue <code>mark-read</code> requests locally and replay when online.</li>
+<li>After sync, re-fetch unread messages to reconcile <code>unreadCount</code>.</li>
+</ul>
+</li>
+<li><strong>Partial message fetch:</strong><ul>
+<li>If one downstream system fails (e.g. BulkMessageSystemAPI), still return what is available.</li>
+<li>Use flags such as <code>partialResult</code> and/or <code>degradedMode</code> to inform UI.</li>
+</ul>
+</li>
+<li><strong>Multi-device sync:</strong><ul>
+<li>Read state is persisted in <code>MessageSystemAPI</code>.</li>
+<li>Any device calling <code>/messages/unread</code> sees the same latest <code>status</code> and <code>unreadCount</code>.</li>
+</ul>
+</li>
+<li><strong>Duplicate prevention:</strong><ul>
+<li>Deduplicate by <code>messageId</code> when merging system + bulk sources.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="testing-recommendations">Testing Recommendations<a class="headerlink" href="#testing-recommendations" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Functional:</strong><ul>
+<li>Validate unread count after each <code>mark-message-read</code> call.</li>
+<li>Verify that bulk + system messages are merged and sorted correctly.</li>
+<li>Test filters (by <code>status</code>, <code>category</code>, date range) and pagination boundaries.</li>
+</ul>
+</li>
+<li><strong>Negative &amp; security:</strong><ul>
+<li>Requests with invalid/missing <code>Authorization</code> → <code>401</code>.</li>
+<li>Requests where <code>userId</code> in payload does not match JWT → <code>403</code>.</li>
+<li>Accessing a message not owned by user → <code>403</code> / <code>404</code> (as per design).</li>
+</ul>
+</li>
+<li><strong>Resilience:</strong><ul>
+<li>Simulate downstream failures:<ul>
+<li>Bulk API down,</li>
+<li>User preferences API delayed.</li>
+</ul>
+</li>
+<li>Confirm <code>partialResult</code> behaviour and logging.</li>
+</ul>
+</li>
+<li><strong>Offline &amp; sync:</strong><ul>
+<li>Simulate offline mark-read queueing and later reconciliation.</li>
+<li>Ensure unread badges align after reconnect + refresh.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="security">Security<a class="headerlink" href="#security" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Authentication &amp; Authorization:</strong><ul>
+<li>Use JWT bearer tokens at Channel API level.</li>
+<li>Process API should receive an already-authenticated principal (service-to-service auth).</li>
+<li>Always validate that <code>userId</code> in payload matches the subject in the token (ownership).</li>
+</ul>
+</li>
+<li><strong>Data protection:</strong><ul>
+<li>Treat message content as potentially sensitive (account / corporate info).</li>
+<li>Avoid logging full content; log IDs and correlation IDs instead.</li>
+</ul>
+</li>
+<li><strong>Audit:</strong><ul>
+<li>Audit log for:<ul>
+<li>message read events,</li>
+<li>bulk message creation,</li>
+<li>security violations (ownership failures).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="performance">Performance<a class="headerlink" href="#performance" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Pagination:</strong><ul>
+<li>Enforce page size limits (default 20, max 50) to prevent huge payloads.</li>
+<li>Keep sorting stable (<code>timestampUtc</code> desc) to avoid issues with paging.</li>
+</ul>
+</li>
+<li><strong>Aggregation &amp; orchestration:</strong><ul>
+<li>Prefer a <strong>single call</strong> from Channel → Process for unread messages.</li>
+<li>Inside Process API:<ul>
+<li>fan-out to System APIs in parallel where possible,</li>
+<li>aggregate results, dedupe, map DTOs.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="assumptions">Assumptions<a class="headerlink" href="#assumptions" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Mobile/web apps:<ul>
+<li>cache unread IDs / message summaries locally for performance,</li>
+<li>always reconcile with backend periodically.</li>
+</ul>
+</li>
+<li>System APIs:<ul>
+<li>expose stable identifiers and timestamps,</li>
+<li>are generally available and within agreed SLAs.</li>
+</ul>
+</li>
+<li>Notification infrastructure:<ul>
+<li>already exists (e.g. Firebase/APNs push layer),</li>
+<li>handles device token management and low-level delivery concerns.</li>
+</ul>
+</li>
+<li>Bulk messages:<ul>
+<li>are precomputed and stored in Bulk/Message systems,</li>
+<li>are filtered per user by the Process layer before returning to clients.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="additional-developer-considerations">Additional Developer Considerations<a class="headerlink" href="#additional-developer-considerations" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>DTO versioning:</strong><ul>
+<li>If <code>MessageSummaryDTO</code> / <code>MessageDetailDTO</code> evolve, add fields in a backward-compatible way.</li>
+<li>For breaking changes, consider versioned endpoints or versioned DTOs.</li>
+</ul>
+</li>
+<li><strong>Idempotency:</strong><ul>
+<li><code>mark-message-read</code> must be idempotent:<ul>
+<li>repeated calls for the same <code>messageId</code> must not double-decrement <code>unreadCount</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Observability:</strong><ul>
+<li>Implement structured logging with correlation IDs per request.</li>
+<li>Expose metrics:<ul>
+<li>latency per endpoint,</li>
+<li>count of degraded responses,</li>
+<li>error-rate per downstream dependency.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Configuration:</strong><ul>
+<li>Page sizes, notification thresholds, and retention windows should be configurable (not hard-coded).</li>
+</ul>
+</li>
+</ul>
+<hr />
+<p>These Developer Notes, together with the <strong>OpenAPI spec</strong>, <strong>Functional Notes</strong>, <strong>Assumptions</strong>, and <strong>Sequence Diagrams</strong>, are intended to give engineers everything they need to implement and operate the Message Inbox APIs confidently.</p>
 
 
 
